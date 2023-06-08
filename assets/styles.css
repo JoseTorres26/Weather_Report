@@ -1,0 +1,45 @@
+ * {
+    margin: auto;
+ }
+
+.nav {
+    background-image: linear-gradient(to right, blue, rgb(63, 0, 63));
+    color: white;
+    font-size: 30px;
+    text-align: end;
+    padding: 20px;
+}
+
+.search {
+    display: flex;
+    flex-direction: column;
+}
+.input {
+    height: 30px;
+    width: 250px;
+    margin: 10px;
+    border-radius: 6px;
+    border-color: gray;
+}
+
+.button {
+    height: 30px;
+    width: 250px;
+    margin: 10px;
+    border-radius: 4px;
+    background-image: linear-gradient(to right, rgb(97, 126, 179), rgb(57, 89, 230));
+    border: none;
+
+
+}
+
+.separator {
+    height: 1px;
+    background-color: black;
+    margin: 10px;
+    width: 250px;
+}
+
+.card {
+    display: flex;
+}
