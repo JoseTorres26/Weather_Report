@@ -65,52 +65,52 @@ button.addEventListener('click', handleClick);
       }
 
       
-function createCard(data, isMainCard = false) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-  
-    if (isMainCard) {
-      card.classList.add('main-card');
-    }
-  
-    const title = document.createElement('h2');
-    title.textContent = isMainCard ? 'Main Card' : 'Card';
-    card.appendChild(title);
-  
-    const keys = Object.keys(data);
-    for (const key of keys) {
-      const value = data[key];
-      if (key === 'dt_txt') {
-        const date = value.split(' ')[0];
-        const paragraph = document.createElement('p');
-        paragraph.textContent = date;
-        card.appendChild(paragraph);
-        continue;
+      function createCard(data, isMainCard = false) {
+        const card = document.createElement('div');
+        card.classList.add('card');
+      
+        if (isMainCard) {
+          card.classList.add('mainCard');
+          const city = data.city;
+          const title = document.createElement('h2');
+          title.textContent = city;
+          card.appendChild(title);
+        }
+      
+        const keys = Object.keys(data);
+        for (const key of keys) {
+          const value = data[key];
+          if (key === 'dt_txt') {
+            const date = value.split(' ')[0];
+            const paragraph = document.createElement('p');
+            paragraph.textContent = date;
+            card.appendChild(paragraph);
+            continue;
+          }
+      
+          if (key === 'icon') {
+            const iconImg = document.createElement('img');
+            iconImg.src = `https://openweathermap.org/img/wn/${value}.png`;
+            card.appendChild(iconImg);
+          } else if (key === 'temp') {
+            const celsius = value - 273.15;
+            const fahrenheit = (celsius * 9) / 5 + 32;
+            const paragraph = document.createElement('p');
+            paragraph.textContent = `Temperature: ${fahrenheit.toFixed(2)}°F`;
+            card.appendChild(paragraph);
+          } else if (key === 'wind') {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = `Wind: ${value} mph`;
+            card.appendChild(paragraph);
+          } else if (key === 'humidity') {
+            const paragraph = document.createElement('p');
+            paragraph.textContent = `Humidity: ${value}%`;
+            card.appendChild(paragraph);
+          }
+        }
+      
+        return card;
       }
-  
-      if (key === 'icon') {
-        const iconImg = document.createElement('img');
-        iconImg.src = `https://openweathermap.org/img/wn/${value}.png`;
-        card.appendChild(iconImg);
-      } else if (key === 'temp') {
-        const celsius = value - 273.15;
-        const fahrenheit = (celsius * 9) / 5 + 32;
-        const paragraph = document.createElement('p');
-        paragraph.textContent = `Temperature: ${fahrenheit.toFixed(2)}°F`;
-        card.appendChild(paragraph);
-      } else if (key === 'wind') {
-        const paragraph = document.createElement('p');
-        paragraph.textContent = `Wind: ${value} mph`;
-        card.appendChild(paragraph);
-      } else if (key === 'humidity') {
-        const paragraph = document.createElement('p');
-        paragraph.textContent = `Humidity: ${value}%`;
-        card.appendChild(paragraph);
-      }
-    }
-  
-    return card;
-  }
   
   function renderCards(weather) {
     cardContainer.innerHTML = '';
@@ -131,8 +131,8 @@ function createCard(data, isMainCard = false) {
   }
 
 
-  function loadSavedWeather(event) {
-    const city = event.target.getAttribute('data-city');
+  function loadSavedWeather(e) {
+    const city = e.target.getAttribute('data-city');
     const savedWeather = JSON.parse(localStorage.getItem('weather')) || [];
     const weather = savedWeather.filter((data) => data.city === city);
     renderCards(weather);
