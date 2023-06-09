@@ -1,5 +1,6 @@
  * {
     margin: auto;
+    box-sizing: border-box;
  }
 
 .nav {
@@ -10,13 +11,25 @@
     padding: 20px;
 }
 
+h1 {
+    margin: 0;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-gap: 10px;
+  
+}
 .search {
-    display: flex;
-    flex-direction: column;
+    width: 250px;
+    float: left;
+  
 }
 .input {
     height: 30px;
-    width: 250px;
+    width: 100%;
+    display: inline-block;
     margin: 10px;
     border-radius: 6px;
     border-color: gray;
@@ -24,7 +37,7 @@
 
 .button {
     height: 30px;
-    width: 250px;
+    width: 100%;
     margin: 10px;
     border-radius: 4px;
     background-image: linear-gradient(to right, rgb(97, 126, 179), rgb(57, 89, 230));
@@ -40,6 +53,19 @@
     width: 250px;
 }
 
-.card {
+.cardContainer {
     display: flex;
-}
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    flex-basis: calc(18% - 20px);
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .main-card {
+    flex-basis: 88%;
+  }
